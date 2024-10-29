@@ -3,27 +3,36 @@
         <input
             disabled :value="selectorValue" type="test"
         />
-        <SelectorBuilderNode
-            :active="!setValues.length"
-            :base-selector="currentSelector"
-            :followables="['elements', 'classes', 'ids', 'attributes', 'psuedos']"
-            :exclude-base="true"
-            @selected="onSelected"
-        />
+        <div class="selector-node">
+            <SelectorBuilderNode
+                :active="!setValues.length"
+                :base-selector="currentSelector"
+                :followables="['elements', 'classes', 'ids', 'attributes', 'psuedos']"
+                :exclude-base="true"
+                @invalid-selection="removeLast"
+                @selected="onSelected"
+            />
+        </div>
         <div 
             v-for="(val, i) in setValues"
             :key="i"
         >
-            <label v-if="i < setValues.length">
-                {{ val.value }}
-            </label>
-            <SelectorBuilderNode
-                :active="i === setValues.length - 1"
-                :base-selector="`${steppedSelectorValue(i + 1)}${(val.type === 'opperators' ? ' *' : '')}`"
-                :followables="val.followables"
-                :previous-type="val.type"
-                @selected="onSelected"
-            />
+            <div class="selector-node">
+                <SelectorBuilderNode
+                    :active="i === setValues.length - 1"
+                    :base-selector="`${steppedSelectorValue(i + 1)}${(val.type === 'opperators' ? ' *' : '')}`"
+                    :followables="val.followables"
+                    :previous-type="val.type"
+                    @invalid-selection="removeLast"
+                    @selected="onSelected"
+                />
+                <button
+                    v-if="i === setValues.length - 1"
+                    @click="removeLast"
+                >
+                    x
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -64,6 +73,12 @@ export default {
             this.currentFollowables = followables;
             this.setValues.push({followables, value, type});
             // this.loading = false;
+        },
+        removeLast () {
+            console.log('last removed');
+            if (this.setValues.length){
+                this.setValues.pop();
+            }
         },
     },
 
