@@ -11,14 +11,19 @@
                 &nbsp;
             </a>
         </div>
+        <DragSlider />
     </div>
 </template>
 
 <script>
 import BaseEditor from './BaseEditor';
 import baseColors from '../../assets/baseColors.json';
+import DragSlider from '../controls/DragSlider.vue';
 export default {
     extends: BaseEditor,
+    components: {
+        DragSlider
+    },
     computed: {
         colorList () {
             return baseColors;
