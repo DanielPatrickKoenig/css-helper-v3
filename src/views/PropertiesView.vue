@@ -10,6 +10,8 @@
                 placeholder="search"
             />
         </div>
+        <router-link :to="{ path: 'property-editor', query: { properties: activeProperties.join(',') } }">Property Editor</router-link>
+        <div>{{ activeProperties }}</div>
         <table>
             <thead>
                 <tr>
@@ -26,7 +28,8 @@
             </thead>
             <tbody>
                 <tr
-                    v-for="(p, i) in filteredProperties"
+                    v-for="(p, i) in pList"
+                    v-show="shouldShow(p)"
                     :key="i"
                 >
                     <td>
@@ -66,6 +69,17 @@ export default {
         filteredProperties () {
             return this.searchTerm.length ? this.pList.filter(item => item.name.includes(this.searchTerm)) : this.pList;
         },
+        activeProperties () {
+            return this.pList.filter(item => item.active).map(item => item.name);
+        },
+        shouldShow () {
+            return p => this.filteredProperties.map(item => item.name).includes(p.name);
+        }
+    },
+    methods: {
+        goToEdidtor () {
+            this.$router.replace('/property-editor');
+        }
     }
 }
 </script>
