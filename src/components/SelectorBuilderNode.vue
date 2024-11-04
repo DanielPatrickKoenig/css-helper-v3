@@ -5,6 +5,7 @@
             v-model="selectedOption"
             @change="onChange"
         >
+            <option :value="defaultSelection">Please Select</option>
             <optgroup
                 v-for="(category, key, i) in matrixData" 
                 :key="i"
@@ -25,6 +26,7 @@
 <script>
 import selectorData from '../assets/selectorBuilderMap.json';
 import { flatten, uniq } from 'lodash';
+const defaultSelection = '';
 export default {
     props: {
         baseSelector: {
@@ -49,7 +51,8 @@ export default {
             currentSelector: '',
             selectorOptionMatrix: selectorData,
             matrixData: {},
-            selectedOption: {},
+            defaultSelection,
+            selectedOption: defaultSelection,
         }
     },
     watch: {
@@ -105,7 +108,7 @@ export default {
         onChange () {
             console.log(this.selectedOption);
             this.$emit('selected', this.selectedOption);
-        } 
+        },
     },
     mounted() {
         this.matrixData = this.buildMatrix();

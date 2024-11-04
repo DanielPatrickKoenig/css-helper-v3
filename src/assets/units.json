@@ -1,0 +1,20 @@
+[
+    {
+        "name": "space",
+        "units": [
+            "px",
+            "rem",
+            "em",
+            "cm",
+            "in",
+            "%"
+        ]
+    },
+    {
+        "name": "time",
+        "units": [
+            "s",
+            "ms"
+        ]
+    }
+]

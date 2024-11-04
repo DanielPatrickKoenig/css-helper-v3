@@ -1,0 +1,20 @@
+[
+    {
+        "name": "global",
+        "values": [
+            "auto",
+            "unset",
+            "inherit"
+        ]
+    },
+    {
+        "name": "position",
+        "values": [
+            "static",
+            "relative",
+            "absolute",
+            "fixed",
+            "sticky"
+        ]
+    }
+]

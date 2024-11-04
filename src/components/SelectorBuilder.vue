@@ -1,10 +1,13 @@
 <template>
-    <div>
+    <div ref="builder">
         <input
-            disabled :value="selectorValue" type="test"
+            disabled
+            :value="selectorValue" type="test"
         />
         <div class="selector-node">
             <SelectorBuilderNode
+                ref="node0"
+                class="selector-node"
                 :active="!setValues.length"
                 :base-selector="currentSelector"
                 :followables="['elements', 'classes', 'ids', 'attributes', 'psuedos']"
@@ -19,6 +22,8 @@
         >
             <div class="selector-node">
                 <SelectorBuilderNode
+                    class="selector-node"
+                    :ref="`node${i + 1}`"
                     :active="i === setValues.length - 1"
                     :base-selector="`${steppedSelectorValue(i + 1)}${(val.type === 'opperators' ? ' *' : '')}`"
                     :followables="val.followables"
@@ -74,10 +79,12 @@ export default {
             this.setValues.push({followables, value, type});
             // this.loading = false;
         },
-        removeLast () {
+        async removeLast () {
             console.log('last removed');
             if (this.setValues.length){
                 this.setValues.pop();
+                await new Promise(resolve => setTimeout(resolve, 50 ));
+                this.$refs.builder.querySelector('.selector-node select:not([disabled])').value = '';
             }
         },
     },

@@ -697,7 +697,17 @@
     },
     {
         "name": "height",
-        "defenition": "Sets the height of an element"
+        "defenition": "Sets the height of an element",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "global"
+            }
+        ]
     },
     {
         "name": "hyphens",
@@ -1397,7 +1407,17 @@
     },
     {
         "name": "width",
-        "defenition": "Sets the width of an element"
+        "defenition": "Sets the width of an element",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "global"
+            }
+        ]
     },
     {
         "name": "word-break",
