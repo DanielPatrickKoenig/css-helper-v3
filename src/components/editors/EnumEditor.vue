@@ -19,11 +19,16 @@
 <script>
 import BaseEditor from './BaseEditor';
 import enums from '../../assets/enums.json';
+import { uniq } from 'lodash';
 export default {
     extends: BaseEditor,
     computed: {
         suffixList () {
-            return enums.find(item => item.subType === this.subType).values;
+            console.log(this.subType);
+            return uniq([
+                ...enums.find(item => item.name === this.subType).values,
+                ...enums.find(item => item.name === 'global').values
+            ]);
         },
         defaultValue () {
             return this.suffixList[0];

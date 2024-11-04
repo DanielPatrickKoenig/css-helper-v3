@@ -3,11 +3,20 @@
         "name": "space",
         "units": [
             "px",
-            "rem",
             "em",
+            "rem",
+            "ex",
+            "%",
             "cm",
+            "mm",
             "in",
-            "%"
+            "pt",
+            "pc",
+            "ch",
+            "vh",
+            "vw",
+            "vmin",
+            "vmax"
         ]
     },
     {
