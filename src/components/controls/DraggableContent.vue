@@ -95,6 +95,17 @@ export default {
             bounds: { x: 0, y: 0, width: 100, height: 100 }
         }
     },
+    watch: {
+        startAngle (newValue) {
+            this.realign(newValue)
+        },
+        startX (newValue) {
+            this.realign(newValue)
+        },
+        startY (newValue) {
+            this.realign(this.currentPosition.x, newValue);
+        }
+    },
     mounted () {
         
         this.realign(this.radial ? this.startAngle : this.startX, this.startY);
@@ -126,7 +137,7 @@ export default {
                     xValue = this.xMax;
                 }
                 if (yValue < this.yMin) {
-                    xValue = this.yMin;
+                    yValue = this.yMin;
                 }
                 if (yValue > this.yMax) {
                     yValue = this.yMax;

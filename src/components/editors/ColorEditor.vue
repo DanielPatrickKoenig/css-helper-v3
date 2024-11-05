@@ -11,7 +11,9 @@
                 &nbsp;
             </a>
         </div>
-        <DragSlider />
+        <DragSlider
+            axis="y"
+        />
     </div>
 </template>
 
