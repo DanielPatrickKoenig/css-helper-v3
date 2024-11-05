@@ -10,7 +10,9 @@
             @tourchstart="down"
         >
             <slot>
-                DRAG ME
+                <div>
+                    DRAG ME
+                </div>
             </slot>
         </div>
         <div
@@ -20,13 +22,13 @@
             @touchmove="move"
             @mouseup="up"
             @touchend="up"
-            @mouseleave="up"
         />
     </div>
 </template>
 
 <script>
 import { processEvent } from '../../utils/general';
+import jstrig from 'jstrig';
 export default {
     props: {
         xLock: {
@@ -49,7 +51,7 @@ export default {
             required: false,
             type: Number
         },
-        yMax: {
+        yMin: {
             default: 0,
             required: false,
             type: Number
@@ -58,31 +60,79 @@ export default {
             default: 999999999,
             required: false,
             type: Number
+        },
+        radial: {
+            default: false,
+            required: false,
+            type: Boolean
+        },
+        radius: {
+            default: 30,
+            required: false,
+            type: Number
+        },
+        startX: {
+            default: 0,
+            required: false,
+            type: Number
+        },
+        startY: {
+            default: 0,
+            required: false,
+            type: Number
+        },
+        startAngle: {
+            default: 0,
+            required: false,
+            type: Number
         }
     },
     data () {
         return {
             dragging: false,
             offset: { x: 0, y: 0 },
-            currentPosition: { x: 0, y: 0 }
+            currentPosition: { x: 0, y: 0 },
+            bounds: { x: 0, y: 0, width: 100, height: 100 }
         }
+    },
+    mounted () {
+        
+        this.realign(this.radial ? this.startAngle : this.startX, this.startY);
+        window.addEventListener('mouseup', this.up);
+        window.addEventListener('touchend', this.up);
+        window.addEventListener('mousemove', this.move);
+        window.addEventListener('touchmove', this.move);
+    },
+    beforeUnmount () {
+        window.removeEventListener('mouseup', this.up);
+        window.removeEventListener('touchend', this.up);
+        window.removeEventListener('mousemove', this.move);
+        window.removeEventListener('touchmove', this.move);
     },
     computed: {
         handleStyle () {
-            let xValue = this.xLock === null ? this.currentPosition.x : this.xLock + this.draggerBounds;
-            let yValue = this.yLock === null ? this.currentPosition.y : this.yLock + this.draggerBounds;
-            if (xValue < this.xMin) {
-                xValue = this.xMin;
+            let xValue = this.xLock === null ? this.currentPosition.x : this.xLock;
+            let yValue = this.yLock === null ? this.currentPosition.y : this.yLock;
+            if (this.radial) {
+                const { x, y } = this.getRadialPosition({ x: xValue, y: yValue })
+                xValue = x;
+                yValue = y;
             }
-            if (xValue > this.xMax) {
-                xValue = this.xMax;
+            else {
+                if (xValue < this.xMin) {
+                    xValue = this.xMin;
+                }
+                if (xValue > this.xMax) {
+                    xValue = this.xMax;
+                }
+                if (yValue < this.yMin) {
+                    xValue = this.yMin;
+                }
+                if (yValue > this.yMax) {
+                    yValue = this.yMax;
+                }
             }
-            if (yValue < this.yMin) {
-                xValue = this.yMin;
-            }
-            if (yValue > this.yMax) {
-                yValue = this.yMax;
-            }
+            
             return { left: `${xValue}px`, top: `${yValue}px` };
         },
         draggerBounds () {
@@ -112,7 +162,48 @@ export default {
         },
         up () {
             this.dragging = false;
+            this.realign();
 
+        },
+        getRadialPosition ({ x, y }, startAngle) {
+            const center = {
+                x: this.bounds.width / 2,
+                y: this.bounds.height / 2
+            };
+            const angle = startAngle !== undefined ? startAngle : jstrig.angle(center, { x, y });
+            return {
+                x: jstrig.orbit(center.x, this.radius, angle, 'cos'),
+                y: jstrig.orbit(center.y, this.radius, angle, 'sin')
+            };
+        },
+        realign (value1, value2) {
+            const { x, y, width, height} = this.$refs.dragger?.getBoundingClientRect();
+            this.bounds = { x, y, width, height};
+
+            if (this.radial) {
+                this.currentPosition = this.getRadialPosition(this.currentPosition, value1);
+            }
+
+            else {
+                if ( value1 ) {
+                    this.currentPosition.x = value1;
+                }
+                if ( value2 ) {
+                    this.currentPosition.x = value2;
+                }
+                if (this.xMin > this.currentPosition.x) {
+                    this.currentPosition.x = this.xMin
+                }
+                if (this.xMax < this.currentPosition.x) {
+                    this.currentPosition.x = this.xMax
+                }
+                if (this.yMin > this.currentPosition.y) {
+                    this.currentPosition.y = this.yMin
+                }
+                if (this.yMax < this.currentPosition.y) {
+                    this.currentPosition.y = this.yMax
+                }
+            }
         }
     }
 }
@@ -126,6 +217,11 @@ export default {
     }
     .drag-handle {
         position: absolute;
+        width: 0;
+        height: 0;
+    }
+    .drag-handle > * {
+        transform: translate(-50%, -50%);
     }
     .drag-overlay{
         display: absolute;
