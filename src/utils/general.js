@@ -8,4 +8,12 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-export { getParameterByName };
+function processEvent (e) {
+    if (e.touches) {
+        e.preventDefault();
+        return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+}
+
+export { getParameterByName, processEvent };

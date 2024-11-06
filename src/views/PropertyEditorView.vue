@@ -8,6 +8,7 @@
                     v-for="(p, i) in selectedProperties"
                     :key="i"
                     :property="p"
+                    @value-change="onValueChanged"
                 />
             </div>
         </EditableTemplate>
@@ -19,6 +20,7 @@ import { getParameterByName } from '../utils/general';
 import pListData from '../assets/properties.json';
 import EditableTemplate from '@/components/EditableTemplate.vue';
 import PropertyPanel from '@/components/PropertyPanel.vue';
+import StyleMapper from '../utils/StyleMapper';
 export default {
     components: {
         EditableTemplate,
@@ -27,7 +29,8 @@ export default {
     data () {
         return {
             selectedProperties: [],
-            pListData
+            pListData,
+            currentSelector: 'h1'
         }        
     },
     created () {
@@ -37,6 +40,13 @@ export default {
             this.selectedProperties = propertiesArray.map(item => this.pListData.find(p => p.name === item));
         }
     },
+    methods: {
+        onValueChanged (e) {
+            console.log(e);
+            StyleMapper.getInstance().addRule(e.property, e.value, this.currentSelector);
+            console.log(StyleMapper.getInstance().toCSS());
+        }
+    }
 }
 </script>
 

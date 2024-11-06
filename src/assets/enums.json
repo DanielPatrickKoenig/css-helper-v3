@@ -2,9 +2,11 @@
     {
         "name": "global",
         "values": [
-            "auto",
-            "unset",
-            "inherit"
+            "inherit",
+            "initial",
+            "revert",
+            "revert-layer",
+            "unset"
         ]
     },
     {

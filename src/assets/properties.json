@@ -421,7 +421,13 @@
     },
     {
         "name": "color",
-        "defenition": "Sets the color of text"
+        "defenition": "Sets the color of text",
+        "editors": [
+            {
+                "type": "color",
+                "subType": ""
+            }
+        ]
     },
     {
         "name": "color-scheme",
@@ -702,10 +708,6 @@
             {
                 "type": "unit",
                 "subType": "space"
-            },
-            {
-                "type": "enum",
-                "subType": "global"
             }
         ]
     },
@@ -1119,7 +1121,13 @@
     },
     {
         "name": "position",
-        "defenition": "Specifies the type of positioning method used for an element (static, relative, absolute or fixed)"
+        "defenition": "Specifies the type of positioning method used for an element (static, relative, absolute or fixed)",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "position"
+            }
+        ]
     },
     {
         "name": "quotes",
@@ -1412,10 +1420,6 @@
             {
                 "type": "unit",
                 "subType": "space"
-            },
-            {
-                "type": "enum",
-                "subType": "global"
             }
         ]
     },

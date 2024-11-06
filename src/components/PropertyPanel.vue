@@ -5,17 +5,21 @@
             v-for="(c, i) in currentComponents"
             :key="i"
             :is="c.component"
-            :sub-type="subType"
+            :sub-type="c.subType"
+            @value-change="onValueChange"
+            
         />
     </div>
 </template>
 
 <script>
+import ColorEditor from './editors/ColorEditor.vue';
 import EnumEditor from './editors/EnumEditor.vue';
 import UnitEditor from './editors/UnitEditor.vue';
 const editors = {
     enum: EnumEditor,
-    unit: UnitEditor
+    unit: UnitEditor,
+    color: ColorEditor,
 }
 export default {
     props: {
@@ -26,7 +30,16 @@ export default {
     },
     computed: {
         currentComponents () {
-            return this.property.editors.map(item => ({ component: editors[item.type], subType: item.subType }));
+            const editorTypes = this.property.editors.map(item => ({ component: editors[item.type], subType: item.subType }));
+            if (!this.property.editors.find(item => item.type === 'enum')) {
+                editorTypes.push({ component: EnumEditor, subType: 'global' });
+            }
+            return editorTypes;
+        }
+    },
+    methods: {
+        onValueChange (e) {
+            this.$emit('value-change', { property: this.property.name, value: e });
         }
     }
 }

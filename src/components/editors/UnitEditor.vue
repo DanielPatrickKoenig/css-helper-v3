@@ -28,7 +28,7 @@ export default {
     extends: BaseEditor,
     computed: {
         suffixList () {
-            return units.find(item => item.subType === this.subType).units;
+            return units.find(item => item.name === this.subType).units;
         }
     }
 }
