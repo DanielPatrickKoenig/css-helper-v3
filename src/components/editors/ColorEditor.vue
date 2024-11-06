@@ -29,11 +29,12 @@ export default {
     computed: {
         colorList () {
             return baseColors;
-        }
+        },
     },
     methods: {
         colorSelected (color) {
-            console.log(color)
+            this.currentValue = color;
+            this.valueChanged();
         }
     }
 }

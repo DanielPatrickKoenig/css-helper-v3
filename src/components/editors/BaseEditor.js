@@ -21,11 +21,14 @@ export default {
         },
         defaultValue () {
             return '0';
+        },
+        emittedValue () {
+            return `${this.currentPrefix}${this.currentValue}${this.currentSuffix}`;
         }
     },
     methods: {
         valueChanged () {
-            this.$emit('value-change', `${this.currentPrefix}${this.currentValue}${this.currentSuffix}`);
+            this.$emit('value-change', this.emittedValue);
         }
     },
     mounted () {

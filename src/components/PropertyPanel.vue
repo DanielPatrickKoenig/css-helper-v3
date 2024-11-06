@@ -6,6 +6,8 @@
             :key="i"
             :is="c.component"
             :sub-type="c.subType"
+            @value-change="onValueChange"
+            
         />
     </div>
 </template>
@@ -33,6 +35,11 @@ export default {
                 editorTypes.push({ component: EnumEditor, subType: 'global' });
             }
             return editorTypes;
+        }
+    },
+    methods: {
+        onValueChange (e) {
+            this.$emit('value-change', { property: this.property.name, value: e });
         }
     }
 }

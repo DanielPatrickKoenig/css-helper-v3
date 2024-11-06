@@ -32,6 +32,9 @@ export default {
         },
         defaultValue () {
             return this.suffixList[0];
+        },
+        emittedValue () {
+            return this.currentValue;
         }
     }
 }
