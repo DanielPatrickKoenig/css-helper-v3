@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="property-column">
-            <select v-model="currentSelector">
+            <select
+                v-model="currentSelector"
+                @change="broadCastSelector"
+            >
                 <option
                     v-for="(s, i) in activeSelectors"
                     :key="i"
@@ -29,7 +32,7 @@
             </select>
 
             <div 
-                class="html-view"
+                :class="`html-view ${templateContainerClass}`"
                 v-html="editableContent"
             />
             <textarea
@@ -52,12 +55,24 @@ export default {
             index: 0,
         };
     },
+    mounted () {
+        this.broadCastSelector();
+    },
+    computed: {
+        templateContainerClass () {
+            return 'css-helper-template';
+        }
+    },
     methods: {
         onTemplateSelected () {
             this.editableContent = this.editableTemplates[this.index].content;
             this. currentSelector = 0;
             this.activeSelectors = this.editableTemplates[this.index].selectors;
+            this.broadCastSelector();
         },
+        broadCastSelector () {
+            this.$emit('selector-update', { selector: `.${this.templateContainerClass} ${this.activeSelectors[this.currentSelector]}`, templateClass: this.templateContainerClass });
+        }
     }
 }
 </script>
