@@ -2,7 +2,9 @@
     <div>
         Propety editor
         <div>{{selectedProperties}}</div>
-        <EditableTemplate>
+        <EditableTemplate
+            @selector-update="selectorUpdate"
+        >
             <div class="property-panels">
                 <PropertyPanel
                     v-for="(p, i) in selectedProperties"
@@ -12,6 +14,7 @@
                 />
             </div>
         </EditableTemplate>
+        <div v-html="styleString" />
     </div>
 </template>
 
@@ -30,7 +33,8 @@ export default {
         return {
             selectedProperties: [],
             pListData,
-            currentSelector: 'h1'
+            currentSelector: 'h1',
+            styleString: '<style></style>'
         }        
     },
     created () {
@@ -44,7 +48,11 @@ export default {
         onValueChanged (e) {
             console.log(e);
             StyleMapper.getInstance().addRule(e.property, e.value, this.currentSelector);
-            console.log(StyleMapper.getInstance().toCSS());
+            this.styleString = `<style>${StyleMapper.getInstance().toCSS()}</style>`;
+            // console.log(StyleMapper.getInstance().toCSS());
+        },
+        selectorUpdate (e) {
+            this.currentSelector = e;
         }
     }
 }
