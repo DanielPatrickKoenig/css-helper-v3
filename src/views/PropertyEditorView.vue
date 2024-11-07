@@ -34,6 +34,7 @@ export default {
             selectedProperties: [],
             pListData,
             currentSelector: 'h1',
+            templateClass: '',
             styleString: '<style></style>'
         }        
     },
@@ -52,7 +53,8 @@ export default {
             // console.log(StyleMapper.getInstance().toCSS());
         },
         selectorUpdate (e) {
-            this.currentSelector = e;
+            this.currentSelector = e.selector;
+            this.templateClass = e.templateClass;
         }
     }
 }

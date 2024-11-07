@@ -32,7 +32,7 @@
             </select>
 
             <div 
-                class="html-view"
+                :class="`html-view ${templateContainerClass}`"
                 v-html="editableContent"
             />
             <textarea
@@ -58,6 +58,11 @@ export default {
     mounted () {
         this.broadCastSelector();
     },
+    computed: {
+        templateContainerClass () {
+            return 'css-helper-template';
+        }
+    },
     methods: {
         onTemplateSelected () {
             this.editableContent = this.editableTemplates[this.index].content;
@@ -66,7 +71,7 @@ export default {
             this.broadCastSelector();
         },
         broadCastSelector () {
-            this.$emit('selector-update', this.activeSelectors[this.currentSelector]);
+            this.$emit('selector-update', { selector: `.${this.templateContainerClass} ${this.activeSelectors[this.currentSelector]}`, templateClass: this.templateContainerClass });
         }
     }
 }
