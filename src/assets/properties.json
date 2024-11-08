@@ -1,63 +1,164 @@
 [
     {
         "name": "accent-color",
-        "defenition": "Specifies an accent color for user-interface controls"
+        "defenition": "Specifies an accent color for user-interface controls",
+        "editors": [
+            {
+                "type": "color",
+                "subType": ""
+            }
+        ]
     },
     {
         "name": "align-content",
-        "defenition": "Specifies the alignment between the lines inside a flexible container when the items do not use all available space"
+        "defenition": "Specifies the alignment between the lines inside a flexible container when the items do not use all available space",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "flex-align"
+            }
+        ]
     },
     {
         "name": "align-items",
-        "defenition": "Specifies the alignment for items inside a flexible container"
+        "defenition": "Specifies the alignment for items inside a flexible container",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "flex-align"
+            }
+        ]
     },
     {
         "name": "align-self",
-        "defenition": "Specifies the alignment for selected items inside a flexible container"
+        "defenition": "Specifies the alignment for selected items inside a flexible container",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "flex-align"
+            }
+        ]
     },
     {
         "name": "all",
-        "defenition": "Resets all properties (except unicode-bidi and direction)"
+        "defenition": "Resets all properties (except unicode-bidi and direction)",
+        "editors": []
     },
     {
         "name": "animation",
-        "defenition": "A shorthand property for all the animation-* properties"
+        "defenition": "A shorthand property for all the animation-* properties",
+        "editors": [
+            {
+                "type": "composite",
+                "subType": "animation"
+            }
+        ]
     },
     {
         "name": "animation-delay",
-        "defenition": "Specifies a delay for the start of an animation"
+        "defenition": "Specifies a delay for the start of an animation",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "time"
+            }
+        ]
     },
     {
         "name": "animation-direction",
-        "defenition": "Specifies whether an animation should be played forwards, backwards or in alternate cycles"
+        "defenition": "Specifies whether an animation should be played forwards, backwards or in alternate cycles",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "animation-direction"
+            }
+        ]
     },
     {
         "name": "animation-duration",
-        "defenition": "Specifies how long an animation should take to complete one cycle"
+        "defenition": "Specifies how long an animation should take to complete one cycle",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "time"
+            }
+        ]
     },
     {
         "name": "animation-fill-mode",
-        "defenition": "Specifies a style for the element when the animation is not playing (before it starts, after it ends, or both)"
+        "defenition": "Specifies a style for the element when the animation is not playing (before it starts, after it ends, or both)",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "fill-mode"
+            }
+        ]
     },
     {
         "name": "animation-iteration-count",
-        "defenition": "Specifies the number of times an animation should be played"
+        "defenition": "Specifies the number of times an animation should be played",
+        "editors": [
+            {
+                "type": "number",
+                "subType": ""
+            },
+            {
+                "type": "enum",
+                "subType": "iteration-count"
+            }
+        ]
     },
     {
         "name": "animation-name",
-        "defenition": "Specifies a name for the @keyframes animation"
+        "defenition": "Specifies a name for the @keyframes animation",
+        "editors": [
+            {
+                "type": "keyframe",
+                "subType": ""
+            }
+        ]
     },
     {
         "name": "animation-play-state",
-        "defenition": "Specifies whether the animation is running or paused"
+        "defenition": "Specifies whether the animation is running or paused",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "play-state"
+            }
+        ]
     },
     {
         "name": "animation-timing-function",
-        "defenition": "Specifies the speed curve of an animation"
+        "defenition": "Specifies the speed curve of an animation",
+        "editors": [
+            {
+                "type": "tool",
+                "subType": "curve"
+            },
+            {
+                "type": "tool",
+                "subType": "line"
+            },
+            {
+                "type": "tool",
+                "subType": "step"
+            },
+            {
+                "type": "enum",
+                "subType": "timeing-function"
+            }
+        ]
     },
     {
         "name": "aspect-ratio",
-        "defenition": "Specifies preferred aspect ratio of an element"
+        "defenition": "Specifies preferred aspect ratio of an element",
+        "editors": [
+            {
+                "type": "number",
+                "subType": ""
+            }
+        ]
     },
     {
         "name": "backdrop-filter",
