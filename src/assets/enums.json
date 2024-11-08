@@ -1,4 +1,5 @@
 [
+    
     {
         "name": "global",
         "values": [
@@ -7,6 +8,69 @@
             "revert",
             "revert-layer",
             "unset"
+        ]
+    },
+    {
+        "name": "flex-align",
+        "values": [
+            "normal",
+            "start",
+            "center",
+            "end",
+            "flex-start",
+            "flex-end",
+            "baseline",
+            "first baseline",
+            "last baseline",
+            "space-between",
+            "space-around",
+            "space-evenly",
+            "stretch",
+            "safe center",
+            "unsafe center"
+        ]
+    },
+    {
+        "name": "animation-direction",
+        "values": [
+            "normal",
+            "reverse",
+            "alternate",
+            "alternate-reverse"
+        ]
+    },
+    {
+        "name": "fill-mode",
+        "values": [
+            "none",
+            "forwards",
+            "backwards",
+            "both"
+        ]
+    },
+    {
+        "name": "iteration-count",
+        "values": [
+            "infinite"
+        ]
+    },
+    {
+        "name": "play-state",
+        "values": [
+            "running",
+            "paused"
+        ]
+    },
+    {
+        "name": "timeing-function",
+        "value": [
+            "ease",
+            "ease-in",
+            "ease-out",
+            "ease-in-out",
+            "linear",
+            "step-start",
+            "step-end"
         ]
     },
     {
