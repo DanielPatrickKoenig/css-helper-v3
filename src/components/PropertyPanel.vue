@@ -1,14 +1,38 @@
 <template>
     <div>
         <h3>{{property.name}}</h3>
-        <component
-            v-for="(c, i) in currentComponents"
-            :key="i"
-            :is="c.component"
-            :sub-type="c.subType"
-            @value-change="onValueChange"
-            
-        />
+        <div
+            v-for="n in count"
+            :key="n"
+        >
+            <button
+                v-if="count > 1"
+                @click="updateCount(count - 1, n)"
+            >
+                -
+            </button>
+            <component
+                v-for="(c, i) in currentComponents"
+                :key="i"
+                :is="c.component"
+                :sub-type="c.subType"
+                :index="n"
+                @value-change="onValueChange"
+                
+            />
+        </div>
+        <div
+            v-if="max !== 1"
+            class="add-remove"
+        >
+            <button
+                v-if="count < max"
+                @click="updateCount(count + 1)"
+            >
+                +
+            </button>
+        </div>
+        
     </div>
 </template>
 
@@ -26,6 +50,17 @@ export default {
         property: {
             requiered: true,
             type: Object
+        },
+        max: {
+            default: 1,
+            required: false,
+            type: Number
+        }
+    },
+    data () {
+        return {
+            count: 1,
+            valueList: [],
         }
     },
     computed: {
@@ -39,7 +74,20 @@ export default {
     },
     methods: {
         onValueChange (e) {
-            this.$emit('value-change', { property: this.property.name, value: e });
+            this.valueList[e.index] = e.value;
+            this.dispatchValue();
+        },
+        dispatchValue () {
+            this.$emit('value-change', { property: this.property.name, value: this.valueList.filter(item => item !== undefined).join(' ')});
+        },
+        updateCount(value, index){
+            this.count = value;
+            if (index !== undefined) {
+                this.valueList.splice(index, 1);
+            }
+            if (this.valueList.length) {
+                this.dispatchValue();
+            }
         }
     }
 }

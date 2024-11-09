@@ -63,7 +63,7 @@
     },
     {
         "name": "timeing-function",
-        "value": [
+        "values": [
             "ease",
             "ease-in",
             "ease-out",
@@ -71,6 +71,87 @@
             "linear",
             "step-start",
             "step-end"
+        ]
+    },
+    {
+        "name": "backface-visibility",
+        "value": [
+            "visible",
+            "hidden"
+        ]
+    },
+    {
+        "name": "attachment",
+        "values": [
+            "scroll",
+            "fixed",
+            "local"
+        ]
+    },
+    {
+        "name": "blend-mode",
+        "values": [
+            "color",
+            "color-burn",
+            "color-dodge",
+            "darken",
+            "difference",
+            "exclusion",
+            "hard-light",
+            "hue",
+            "lighten",
+            "multiply",
+            "normal",
+            "overlay",
+            "saturation",
+            "screen",
+            "soft-light"
+        ]
+    },
+    {
+        "name": "background-clip",
+        "values": [
+            "border-box",
+            "padding-box",
+            "content-box",
+            "text",
+            "border-area"
+        ]
+    },
+    {
+        "name": "background-origin",
+        "values": [
+            "border-box",
+            "padding-box",
+            "content-box"
+        ]
+    },
+    {
+        "name": "background-position",
+        "values": [
+            "top",
+            "bottom",
+            "left",
+            "right",
+            "center"
+        ]
+    },
+    {
+        "name": "background-repeat",
+        "values": [
+            "repeat",
+            "repeat-x",
+            "repeat-y",
+            "space",
+            "round",
+            "no-repeat"
+        ]
+    },
+    {
+        "name": "background-size",
+        "values": [
+            "cover",
+            "contain"
         ]
     },
     {

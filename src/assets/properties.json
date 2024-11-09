@@ -162,59 +162,166 @@
     },
     {
         "name": "backdrop-filter",
-        "defenition": "Defines a graphical effect to the area behind an element"
+        "defenition": "Defines a graphical effect to the area behind an element",
+        "editors": [
+            {
+                "type": "tool",
+                "subType": "filter"
+            }
+        ]
+
     },
     {
         "name": "backface-visibility",
-        "defenition": "Defines whether or not the back face of an element should be visible when facing the user"
+        "defenition": "Defines whether or not the back face of an element should be visible when facing the user",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "backface-visibility"
+            }
+        ]
     },
     {
         "name": "background",
-        "defenition": "A shorthand property for all the background-* properties"
+        "defenition": "A shorthand property for all the background-* properties",
+        "editors": [
+            {
+                "type": "composite",
+                "subType": "animation"
+            }
+        ]
     },
     {
         "name": "background-attachment",
-        "defenition": "Sets whether a background image scrolls with the rest of the page, or is fixed"
+        "defenition": "Sets whether a background image scrolls with the rest of the page, or is fixed",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "attachment"
+            }
+        ]
     },
     {
         "name": "background-blend-mode",
-        "defenition": "Specifies the blending mode of each background layer (color/image)"
+        "defenition": "Specifies the blending mode of each background layer (color/image)",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "blend-mode"
+            }
+        ]
     },
     {
         "name": "background-clip",
-        "defenition": "Defines how far the background (color or image) should extend within an element"
+        "defenition": "Defines how far the background (color or image) should extend within an element",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "background-clip"
+            }
+        ]
     },
     {
         "name": "background-color",
-        "defenition": "Specifies the background color of an element"
+        "defenition": "Specifies the background color of an element",
+        "editors": [
+            {
+                "type": "color",
+                "subType": ""
+            }
+        ]
     },
     {
         "name": "background-image",
-        "defenition": "Specifies one or more background images for an element"
+        "defenition": "Specifies one or more background images for an element",
+        "editors": [
+            {
+                "type": "string",
+                "subType": "url"
+            },
+            {
+                "type": "tool",
+                "subType": "gradient"
+            }
+        ]
     },
     {
         "name": "background-origin",
-        "defenition": "Specifies the origin position of a background image"
+        "defenition": "Specifies the origin position of a background image",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "background-origin"
+            }
+        ]
     },
     {
         "name": "background-position",
-        "defenition": "Specifies the position of a background image"
+        "defenition": "Specifies the position of a background image",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "background-position"
+            }
+        ],
+        "max": 4
     },
     {
         "name": "background-position-x",
-        "defenition": "Specifies the position of a background image on x-axis"
+        "defenition": "Specifies the position of a background image on x-axis",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "background-position"
+            }
+        ]
     },
     {
         "name": "background-position-y",
-        "defenition": "Specifies the position of a background image on y-axis"
+        "defenition": "Specifies the position of a background image on y-axis",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "background-position"
+            }
+        ]
     },
     {
         "name": "background-repeat",
-        "defenition": "Sets if/how a background image will be repeated"
+        "defenition": "Sets if/how a background image will be repeated",
+        "editors": [
+            {
+                "type": "enum",
+                "subType": "background-repeat"
+            }
+        ]
     },
     {
         "name": "background-size",
-        "defenition": "Specifies the size of the background images"
+        "defenition": "Specifies the size of the background images",
+        "editors": [
+            {
+                "type": "unit",
+                "subType": "space"
+            },
+            {
+                "type": "enum",
+                "subType": "background-size"
+            }
+        ],
+        "max": 2
     },
     {
         "name": "block-size",

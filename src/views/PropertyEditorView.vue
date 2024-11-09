@@ -10,6 +10,7 @@
                     v-for="(p, i) in selectedProperties"
                     :key="i"
                     :property="p"
+                    :max="p.max"
                     @value-change="onValueChanged"
                 />
             </div>

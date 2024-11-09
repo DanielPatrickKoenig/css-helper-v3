@@ -3,6 +3,11 @@ export default {
         subType: {
             required: true,
             type: String
+        },
+        index: {
+            default: 0,
+            required: false,
+            type: Number
         }
     },
     data () {
@@ -28,7 +33,7 @@ export default {
     },
     methods: {
         valueChanged () {
-            this.$emit('value-change', this.emittedValue);
+            this.$emit('value-change', { value: this.emittedValue, index: this.index });
         }
     },
     mounted () {
